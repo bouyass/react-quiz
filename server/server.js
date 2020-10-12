@@ -1,32 +1,39 @@
+// requirements
 const express = require('express')
 const parser = require('body-parser')
 const cors = require('cors')
 const mongoose = require('mongoose')
 
+//express instance
 const app = express()
 
+
+// midlewares
 app.use(express.urlencoded())
 app.use(parser.json())
 app.use(cors())
 
+// onnection to  the DB
+mongoose.connect('mongodb+srv://admin:admin@cluster0.o93oo.mongodb.net/quiz?retryWrites=true&w=majority',
+  { useNewUrlParser: true,
+    useUnifiedTopology: true })
+  .then(() => {
+    console.log('Connexion à MongoDB réussie !')
+    }).catch(() => console.log('Connexion à MongoDB échouée !'));
 
-mongoose.connect('mongodb+srv://lyes1994:lyes1994@cluster0.o93oo.mongodb.net/url-shortener?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true })
-                .then(() => {
-                    console.log("Successful connection ot the database")
-                }).catch((error) => {
-                    console.log(error)
-                })
-
-
+ 
+// starting server
 app.listen(2222, ()=> {
     console.log("server listening at port 2222")
 })
 
-
+// default way
 app.get('/', (req, res)=>{
     res.send("server working correctly")
 })
 
+
+// sign up call
 app.post('/signUp', (req, res) => {
     res.send(req.body.username)
 })
