@@ -1,16 +1,48 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './Login.css'
 import {Link} from 'react-router-dom'
+import axios from 'axios'
 
-function Login() {
+function Login(props) {
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [errors, setErrors] = useState([])
+
+    const handleEmailInput = (e) => {
+        setEmail(e.target.value)
+    }
+
+    const handlePasswordInput = (e) => {
+        setPassword(e.target.value)
+    } 
+
+    const handleClick = () => {
+        axios.post('http://localhost:2222/login',
+                    {
+                        email: email,
+                        password: password
+                    })
+                    .then((response) => {
+                        setErrors(response.data)
+                        if(errors.length === 0){
+                            window.location.href = "http://localhost:3000/"
+                        }
+                    })
+                    .catch((error) => {console.log(error)})
+    }
+
+
     return (
         <div className="login">
             <h2> LOGIN FORM </h2>
+            <span class="error"> {errors['db_error'] ? errors['db_error'] : '' } </span>
             <form>
-                <input type="email" placeholder="Your email"/>
-                <input type="password" placeholder="password"/>
+                <input type="email" value={email} onChange={handleEmailInput} placeholder="Your email"/>
+                <input type="password" value={password} onChange={handlePasswordInput} placeholder="password"/>
+                <span class="error"> {errors['connection_fail'] ? errors['connection_fail'] : '' } </span>
             </form>
-            <button  class="btn waves-effect waves-light" type="submit" name="action"> Log in  <i class="material-icons input"></i></button>
+            <button onClick={handleClick}  class="btn waves-effect waves-light" type="submit" name="action"> Log in  <i class="material-icons input"></i></button>
             <p>Not already member ? <Link to="/signup" >Sign up</Link> </p>
         </div>
     )

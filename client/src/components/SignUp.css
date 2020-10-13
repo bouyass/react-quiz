@@ -16,9 +16,13 @@
 
 .container form {
     width: 60%;
-    margin:  40px 0px 50px ;
+    margin:  10px 0px 20px ;
 }
 
 .container button {
     width: 120px;
+}
+
+.error {
+    color: red;
 }
