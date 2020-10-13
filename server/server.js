@@ -3,6 +3,9 @@ const express = require('express')
 const parser = require('body-parser')
 const cors = require('cors')
 const mysql = require('mysql')
+const bcrypt = require('bcrypt')
+
+const saltRounds = 10
 
 //express instance
 const app = express()
@@ -90,8 +93,12 @@ app.post('/signup', (req, res) => {
 
         if(Object.keys(errors).length === 0 ){
             const query = 'INSERT INTO user (username, email, password) VALUES ( ? , ?, ?)'
-            conn.query(query, [username, email, password], (error, result) => {
-                errors['db_error'] = 'Error occured when communicating with database'
+            // hash password 
+            bcrypt.hash(password, saltRounds, function(err, hash){
+                if(err) throw err
+                conn.query(query, [username, email, hash], (error, result) => {
+                    errors['db_error'] = 'Error occured when communicating with database'
+                })
             })
         }
 
@@ -114,8 +121,10 @@ app.post('/login', (req,res) => {
         let found = false
 
         result.map(item => {
-            if(item.email === email && item.password  === password){
-                found = true
+            if(item.email === email){
+                bcrypt.compare(email, item.email).then(function(result){
+                    found = result
+                })
             }
         })
 
