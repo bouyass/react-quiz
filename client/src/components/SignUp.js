@@ -27,7 +27,11 @@ function SignUp(props) {
                     .then(response => {
                         setErrors(response.data)
                         if(Object.keys(response.data).length === 0){
-                            window.location.href="http://localhost:3000/login"
+                            props.history.push({
+                                pathname: '/login',
+                                state: {notification: username+" !! you've been registered successfully"}
+                            })
+                            window.location.replace="http://localhost:3000/login"
                         }
                         
                     })
