@@ -111,24 +111,21 @@ app.post('/login', (req,res) => {
     const email = req.body.email
     const password = req.body.password
 
-    conn.query('SELECT * FROM user', (error, result) => {
+    conn.query('SELECT * FROM user WHERE email = ?', email , async (error, result) => {
         const errors = {}
         if(error){
             errors['db_error'] = "Database connection error" 
             throw error
         }
-
-        let found = false
-
-        result.map(item => {
-            if(item.email === email){
-                bcrypt.compare(email, item.email).then(function(result){
-                    found = result
-                })
+        
+        if(result.length === 0){
+            errors['wrong_email'] = "The provided email doesn't exist";
+        }else{
+            const truePassword = await bcrypt.compare(password, result[0].password)
+            if(!truePassword){
+                errors['wrong_password'] = "The provided password doens't match"
             }
-        })
-
-        if(!found){errors['connection_fail'] = 'Connections failed, please check your credentials'}
+        }
 
         res.send(errors)
     })

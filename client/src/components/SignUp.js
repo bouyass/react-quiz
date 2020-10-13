@@ -26,7 +26,7 @@ function SignUp(props) {
                     })
                     .then(response => {
                         setErrors(response.data)
-                        if(errors.length == 0){
+                        if(Object.keys(response.data).length === 0){
                             window.location.href="http://localhost:3000/login"
                         }
                         

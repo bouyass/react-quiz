@@ -25,12 +25,12 @@ function Login(props) {
                     })
                     .then((response) => {
                         setErrors(response.data)
-                        if(errors.length === 0){
+                        if(Object.keys(response.data).length  === 0){
                             window.location.href = "http://localhost:3000/"
                         }
                     })
                     .catch((error) => {console.log(error)})
-    }
+    }  
 
 
     return (
@@ -39,8 +39,9 @@ function Login(props) {
             <span class="error"> {errors['db_error'] ? errors['db_error'] : '' } </span>
             <form>
                 <input type="email" value={email} onChange={handleEmailInput} placeholder="Your email"/>
+                <span class="error"> {errors['wrong_email'] ? errors['wrong_email'] : '' } </span>
                 <input type="password" value={password} onChange={handlePasswordInput} placeholder="password"/>
-                <span class="error"> {errors['connection_fail'] ? errors['connection_fail'] : '' } </span>
+                <span class="error"> {errors['wrong_password'] ? errors['wrong_password'] : '' } </span>
             </form>
             <button onClick={handleClick}  class="btn waves-effect waves-light" type="submit" name="action"> Log in  <i class="material-icons input"></i></button>
             <p>Not already member ? <Link to="/signup" >Sign up</Link> </p>
