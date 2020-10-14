@@ -34,7 +34,7 @@ function Login(props) {
         if(props.history.location.state !== undefined ){
             handleNotifications(props.history.location.state.notification)
         }
-    })
+    }, [])
 
     const handleClick = () => {
         axios.post('http://localhost:2222/login',

@@ -18,6 +18,7 @@ app.use(cors())
 
 // onnection to  the DB
 const conn = mysql.createConnection('mysql://root:root@localhost:3306/quiz?debug=true&charset=BIG5_CHINESE_CI&timezone=-UTC')
+
 // check if the connection succeeded 
 conn.connect(function(msg) {
     if(msg){
@@ -38,7 +39,7 @@ app.get('/', (req, res)=>{
 })
 
 
-// sign up call
+// sign up call handler
 app.post('/signup', (req, res) => {
 
     const errors = {}
@@ -106,7 +107,7 @@ app.post('/signup', (req, res) => {
     })
     
 })
-
+// login call handler
 app.post('/login', (req,res) => {
     const email = req.body.email
     const password = req.body.password
