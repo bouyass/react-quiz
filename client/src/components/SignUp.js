@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import './SignUp.css'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
@@ -58,6 +58,12 @@ function SignUp(props) {
     const confirmPasswordHandler = (e) => {
         setconfirmPassword(e.target.value)
     }
+
+    useEffect(() => {
+        if(localStorage.getItem('login') === "true"){
+            window.location.replace('/')
+        }
+    })
 
     return (
         <div className="container">

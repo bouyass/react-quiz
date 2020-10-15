@@ -46,6 +46,13 @@
 
 }
 
+@media screen and (max-width: 960px){
+    .navbar-menu {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
 /*
 .navbar-logo {
     justify-content: start;

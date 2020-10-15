@@ -8,7 +8,7 @@ function Home() {
 
     const handleClick = () => {
         console.log(IsUserLoggedIn.isloggedin())
-        if(IsUserLoggedIn.isloggedin() === true){
+        if(IsUserLoggedIn.isloggedin() === "true"){
             axios.get('http://localhost:2222/test', { headers: {'authorization':'Bearer '+localStorage.getItem('token')}})
                     .then((response) => {
                        console.log(response.status)
