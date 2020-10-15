@@ -4,8 +4,12 @@ const parser = require('body-parser')
 const cors = require('cors')
 const mysql = require('mysql')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+const fs = require('fs')
+const path = require('path')
 
 const saltRounds = 10
+const privateKeyPath = path.join(__dirname,'private.key')
 
 //express instance
 const app = express()
@@ -37,7 +41,6 @@ app.listen(2222, ()=> {
 app.get('/', (req, res)=>{
     res.send("server working correctly")
 })
-
 
 // sign up call handler
 app.post('/signup', (req, res) => {
@@ -107,6 +110,8 @@ app.post('/signup', (req, res) => {
     })
     
 })
+
+
 // login call handler
 app.post('/login', (req,res) => {
     const email = req.body.email
@@ -128,6 +133,38 @@ app.post('/login', (req,res) => {
             }
         }
 
-        res.send(errors)
+        if(Object.keys(errors).length === 0){
+            fs.readFile(privateKeyPath,'utf8',(err,privateKey) => {
+                if(err) {errors['jwt_error'] = 'Error in token generation'}
+                let token = jwt.sign({iat: Math.floor(Date.now() / 1000) - 30,data: {user: result[0].username}}, privateKey);
+
+                if(token.length > 0){
+                    errors['token'] = token
+                    console.log(token)
+                    res.send(errors)
+                }else{
+                    errors['jwt_error'] = 'Error in token generation'
+                    res.send(errors)
+                }
+            })
+        }else{
+            res.send(errors)
+        }
+    })
+})
+
+//test api
+app.get('/test', (req, res) => {
+    console.log(req.headers.authorization)
+    let token = req.headers.authorization.split(' ')[1]
+    fs.readFile(privateKeyPath, (err, privateKey) => {
+        jwt.verify(token, privateKey, (err, decoded) => {
+            if(err){
+                res.sendStatus(403)
+            } else{
+                console.log(decoded.data.user)
+                res.send(decoded.data.user)
+            }
+        })
     })
 })

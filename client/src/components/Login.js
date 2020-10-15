@@ -36,23 +36,30 @@ function Login(props) {
         }
     }, [])
 
-    const handleClick = () => {
-        axios.post('http://localhost:2222/login',
+    const handleClick = (e) => {
+        e.preventDefault()
+        if(email.length === 0 || password.length === 0){
+            let errors = {}
+            if(email.length === 0) errors['email_empty'] = 'Email is required'
+            if(password.length === 0) errors['password_empty'] = 'Password is required'
+            setErrors(errors)
+        }else{
+            axios.post('http://localhost:2222/login',
                     {
                         email: email,
                         password: password
                     })
                     .then((response) => {
                         setErrors(response.data)
-                        if(Object.keys(response.data).length  === 0){
-                            props.history.push({
-                                pathname: '/',
-                                state: {notification: "You've been loged in successfully"}
-                            })
+                        if(Object.keys(response.data).length  === 1 && errors['token']){
+                            localStorage.setItem('login',true)
+                            localStorage.setItem('token',errors['token'])
+                            props.history.push({pathname: '/', state: {notification: "You've been loged in successfully"}})
                             window.location.replace = "http://localhost:3000/"
                         }
                     })
                     .catch((error) => {console.log(error)})
+        }
     }  
 
 
@@ -61,11 +68,14 @@ function Login(props) {
             <NotificationContainer />
             <h2> LOGIN FORM </h2>
             <span class="error"> {errors['db_error'] ? errors['db_error'] : '' } </span>
+            <span class="error"> {errors['jwt_error'] ? errors['jwt_error'] : '' } </span>
             <form>
                 <input type="email" value={email} onChange={handleEmailInput} placeholder="Your email"/>
                 <span class="error"> {errors['wrong_email'] ? errors['wrong_email'] : '' } </span>
+                <span class="error"> {errors['email_empty'] ? errors['email_empty'] : '' } </span>
                 <input type="password" value={password} onChange={handlePasswordInput} placeholder="password"/>
                 <span class="error"> {errors['wrong_password'] ? errors['wrong_password'] : '' } </span>
+                <span class="error"> {errors['password_empty'] ? errors['password_empty'] : '' } </span>
             </form>
             <button onClick={handleClick}  class="btn waves-effect waves-light" type="submit" name="action"> Log in  <i class="material-icons input"></i></button>
             <p>Not already member ? <Link to="/signup" >Sign up</Link> </p>
