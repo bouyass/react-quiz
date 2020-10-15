@@ -1,12 +1,12 @@
 // requirements
 const express = require('express')
 const parser = require('body-parser')
-const cors = require('cors')
 const mysql = require('mysql')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const fs = require('fs')
 const path = require('path')
+const cors = require('cors')
 
 const saltRounds = 10
 const privateKeyPath = path.join(__dirname,'private.key')
@@ -136,7 +136,8 @@ app.post('/login', (req,res) => {
         if(Object.keys(errors).length === 0){
             fs.readFile(privateKeyPath,'utf8',(err,privateKey) => {
                 if(err) {errors['jwt_error'] = 'Error in token generation'}
-                let token = jwt.sign({iat: Math.floor(Date.now() / 1000) - 30,data: {user: result[0].username}}, privateKey);
+                let username = result[0].username
+                const token = jwt.sign({ username }, privateKey, { expiresIn: 60})
 
                 if(token.length > 0){
                     errors['token'] = token
@@ -162,8 +163,8 @@ app.get('/test', (req, res) => {
             if(err){
                 res.sendStatus(403)
             } else{
-                console.log(decoded.data.user)
-                res.send(decoded.data.user)
+                console.log(decoded.username)
+                res.send(decoded.username)
             }
         })
     })

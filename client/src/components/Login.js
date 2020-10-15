@@ -31,6 +31,7 @@ function Login(props) {
     }
 
     useEffect(() => {
+        console.log(localStorage.getItem('login'))
         if(props.history.location.state !== undefined ){
             handleNotifications(props.history.location.state.notification)
         }
