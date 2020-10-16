@@ -1,0 +1,47 @@
+.game-container {
+    min-height: 420px;
+    background-color: #fff;
+}
+
+
+.gameBoard {
+    display: flex;
+    flex-direction: row;
+}
+
+.infoSection {
+    border-right: 1px solid gray;
+    height: 31.4vw;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.questionSection {
+    height: 31.4vw;
+    width: 80%;
+}   
+
+ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-self: center;
+    gap:20px;
+    margin-left: 0.5vw;
+}
+
+li {
+    font-size: 1.4em;
+}
+
+.info-item {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.question-container {
+    background-image: url("https://t4.ftcdn.net/jpg/02/24/03/21/240_F_224032170_7PfrDJYWjCw4Rs1WFvhPkiSPuD02sw1q.jpg") no-repeat center center/cover;
+    width: 80%;
+
+}

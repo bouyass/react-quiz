@@ -22,7 +22,7 @@ function Quiz() {
   }
 
   useEffect(() => {
-    document.getElementById(level).style.border = "3px solid green"
+     document.getElementById(level).style.border = "3px solid green"
   }, [level, theme])
 
 

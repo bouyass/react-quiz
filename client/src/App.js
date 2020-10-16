@@ -4,6 +4,7 @@ import SignUp from './components/SignUp'
 import { BrowserRouter as Router , Switch, Route} from 'react-router-dom'
 import Home from './components/Home'
 import Login from './components/Login'
+import Game from './components/Game'
 import CheckNavigation from '../src/CheckNavigation'
 import GenericNotFound from './components/GenericNotFound'
 import PrivateNavigation from './PrivateNavigation'
@@ -16,9 +17,10 @@ function App() {
           <Route path="/" exact component={Home}/>
           <CheckNavigation path="/login" exact component={Login}/>
           <CheckNavigation path="/signup" exact component={SignUp}/>
+          <PrivateNavigation path="/game" exact component={Game}/>
           <Route component={GenericNotFound} />
         </Switch>
-      </div>
+      </div>    
     </Router>
   );
 }

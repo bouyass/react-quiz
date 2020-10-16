@@ -42,7 +42,7 @@
 .navbar-menu {
     display: flex;
     flex-direction: row;
-    gap:0vw;
+    gap:1vw;
     margin-right: 10px;
 }
 
