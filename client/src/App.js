@@ -13,7 +13,7 @@ function App() {
     <Router>
       <div className="App">
         <Switch>
-          <PrivateNavigation path="/" exact component={Home}/>
+          <Route path="/" exact component={Home}/>
           <CheckNavigation path="/login" exact component={Login}/>
           <CheckNavigation path="/signup" exact component={SignUp}/>
           <Route component={GenericNotFound} />

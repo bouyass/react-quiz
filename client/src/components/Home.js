@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 import NavBar from './NavBar'
+import Footer from './Footer'
+import Quiz from './Quiz'
 import axios from 'axios'
 import './Home.css'
 import IsUserLoggedIn from '../userStorage'
@@ -32,10 +34,9 @@ function Home() {
 
     return (
         <div>
-            <NavBar />
-
-            <button onClick={handleClick}> Test JWT</button>
-            <button onClick={handleLogout}> Log out</button>
+            <NavBar handleLogout={handleLogout}/>
+            <Quiz />
+            <Footer />
         </div>
     )
 }
