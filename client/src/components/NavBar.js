@@ -23,11 +23,11 @@ function NavBar(props) {
 
         <div className="navbar-logo">
           <h4> Lyes Quiz </h4>
-          <i class="logo material-icons">extension</i>
+          <i className="logo material-icons">extension</i>
         </div>
 
         {auth === 'true' ? 
-        <div class="container-2nd">
+        <div className="container-2nd">
           <ul className={active ? 'navbar-menu active' : 'navbar-menu'}>
             <li className="navbar-item logged">
               {}
@@ -43,17 +43,17 @@ function NavBar(props) {
           </div>
         </div>
          :
-         <div class="container-2nd">
+         <div className="container-2nd">
           <ul className={active ? 'navbar-menu active' : 'navbar-menu'}>
             <li className="navbar-item notLogged">
-            <Link to="/signup" ><button class="navbarButton"><b> Sign up </b></button></Link>
+            <Link to="/signup" ><button className="navbarButton"><b> Sign up </b></button></Link>
             </li>
             <li className="navbar-item">
-              <Link to="login" ><button class="navbarButton"><b> Login </b></button></Link>
+              <Link to="login" ><button className="navbarButton"><b> Login </b></button></Link>
             </li>
           </ul>
           <div className="navbar-icon">
-               <i onClick={handleMenuClick} class="material-icons">{active ? 'clear' : 'view_headline' }</i>
+               <i onClick={handleMenuClick} className="material-icons">{active ? 'clear' : 'view_headline' }</i>
           </div>
         </div>
 }

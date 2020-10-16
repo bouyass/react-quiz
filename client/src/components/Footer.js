@@ -43,7 +43,7 @@ function Footer() {
                 </div>
             </div>
             <div className="socialMedia-copyrights-container">
-                <div className="social-media"> <div className="social"> <i class="material-icons">language</i> <span className="social-text">Facebook</span></div><div className="social"><i class="material-icons">language</i> <span className="social-text">Twitter</span> </div>  </div>
+                <div className="social-media"> <div className="social"> <i className="material-icons">language</i> <span className="social-text">Facebook</span></div><div className="social"><i className="material-icons">language</i> <span className="social-text">Twitter</span> </div>  </div>
                 <div className="copyrights"> © 2020 Lyes Quiz  </div>
             </div>
         </div>
