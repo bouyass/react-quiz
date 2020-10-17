@@ -1,2 +1,4 @@
-# react-quiz application with nodejs server, mysql database. 
+# react-quiz application 
+nodejs server
+mysql database
 JWT authentication
