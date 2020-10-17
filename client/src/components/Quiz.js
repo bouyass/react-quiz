@@ -7,7 +7,7 @@ import { Tooltip } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 
-function Quiz() {
+function Quiz(props) {
   const [level, setLevel] = useState("debutant");
   const [theme, setTheme] = useState("none")
   const [currentSubTheme, setCurrentSubTheme] = useState('none') 
@@ -16,12 +16,10 @@ function Quiz() {
   const handleLevelClick = (e) => {
         document.getElementById(level).style.border = "3px solid #fff"
         setLevel(e.target.value)
-        console.log(level)
   };
 
   const handleThemeClick = (e) => {
         setTheme(e.target.id)
-        window.location.replace('/game')
   }
 
   const handleSubThemeClick = (e) => {
@@ -30,9 +28,23 @@ function Quiz() {
 
   useEffect(() => {
      document.getElementById(level).style.border = "3px solid green"
-     console.log(theme)
-     
-  }, [level, theme])
+  }, [level])
+
+
+  useEffect(() => {
+    if(currentSubTheme !== 'none'){
+          setCurrentSubTheme(currentSubTheme)
+         /* props.history.push({
+            pathname:"/game/"+currentSubTheme,
+            state: {
+              level: level,
+              theme: theme,
+              subTheme: currentSubTheme 
+        }
+      })*/
+      window.location.replace('/game/'+currentSubTheme)
+    }
+  }, [currentSubTheme])
 
 
   return (

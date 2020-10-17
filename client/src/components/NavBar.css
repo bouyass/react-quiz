@@ -27,16 +27,20 @@
     justify-content: flex-start;
 }
 
+.navbar-logo h4 {
+    font-family: 'Nunito', sans-serif;
+}
+
 .logo {
-    margin-top:13px
+    margin-top:13px;
 }
 
 .container-2nd {
      justify-content: flex-end;
      display: flex;
      flex-direction: row;
-     width:100vw;
-     margin-top: 20px;
+     width:00vw;
+     margin-top: 10px;
 }
 
 .navbar-menu {

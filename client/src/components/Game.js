@@ -11,13 +11,18 @@ function Game(props) {
     const [subTheme, setSubTheme] = useState('none')
 
     useEffect(() => {
-        
+        if(props.history.location.state !== undefined){
+            setDifficulty(props.history.location.state.level)
+
+            setTheme(props.history.location.state.theme)
+        }
+        setSubTheme(props.match.params[0])
     })
 
     return (
         <div>
             <NavBar />
-            <GameBoard difficulty="debutant" theme="cinema" subTheme="clintEastwood" />
+            <GameBoard difficulty={0} theme="animaux" subTheme={subTheme} />
             <Footer />
         </div>
     )
