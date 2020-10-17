@@ -49,7 +49,7 @@ function NavBar(props) {
             <Link to="/signup" ><button className="navbarButton"><b> Sign up </b></button></Link>
             </li>
             <li className="navbar-item">
-              <Link to="login" ><button className="navbarButton"><b> Login </b></button></Link>
+              <Link to="/login" ><button className="navbarButton"><b> Login </b></button></Link>
             </li>
           </ul>
           <div className="navbar-icon">

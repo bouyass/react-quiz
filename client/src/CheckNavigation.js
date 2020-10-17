@@ -6,7 +6,7 @@ function CheckNavigation({component: Component, ...rest}) {
     return (
         <Route
             {...rest}
-            render={props=> IsUserLoggedIn.isloggedin() === 'false' ? 
+            render={props=> IsUserLoggedIn.isloggedin() === "false" ? 
                     <Component {...props}/> : 
                     <Redirect to={{ pathname: '/'}} />
             }

@@ -44,3 +44,10 @@
 .title {
     text-align: center;
 }
+
+@media screen and (max-width: 450px){
+    .info-container{
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+}

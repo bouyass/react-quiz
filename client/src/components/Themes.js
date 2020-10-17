@@ -54,6 +54,42 @@ function Themes(props) {
             </h6>
             <img id="arts" src={arts} />
           </div>
+          
+        </div>
+        <div className="theme-row">
+        <div onClick={props.clickHandler} className="theme">
+            <h6>
+              <b>BANDE DESSINEE</b>
+            </h6>
+            <img id="bande" src={bande} />
+          </div>
+          <div className="theme">
+            <h6>
+              <b> CÉLÉBRITÉS </b>
+            </h6>
+            <img src={celebrite} />
+          </div>
+          <div className="theme">
+            <h6>
+              <b> GASTRONOMIE </b>
+            </h6>
+            <img src={gastronomie} />
+          </div>
+        </div>
+
+        <div className="theme-row">
+        <div className="theme">
+            <h6>
+              <b> POUR ADULTES </b>
+            </h6>
+            <img src={adulte} />
+          </div>
+        <div className="theme">
+            <h6>
+              <b> LOISIRS </b>
+            </h6>
+            <img src={loisirs} />
+          </div>
           <div onClick={props.clickHandler} className="theme">
             <h6>
               <b>BANDE DESSINEE</b>
@@ -61,14 +97,8 @@ function Themes(props) {
             <img id="bande" src={bande} />
           </div>
         </div>
-
         <div className="theme-row">
-          <div className="theme">
-            <h6>
-              <b> CÉLÉBRITÉS </b>
-            </h6>
-            <img src={celebrite} />
-          </div>
+          
           <div onClick={props.clickHandler} className="theme">
             <h6>
               <b>CINÉMA</b>
@@ -90,12 +120,7 @@ function Themes(props) {
         </div>
 
         <div className="theme-row">
-          <div className="theme">
-            <h6>
-              <b> GASTRONOMIE </b>
-            </h6>
-            <img src={gastronomie} />
-          </div>
+         
           <div className="theme">
             <h6>
               <b>HISTOIRE</b>
@@ -119,12 +144,6 @@ function Themes(props) {
         <div className="theme-row">
           <div className="theme">
             <h6>
-              <b> LOISIRS </b>
-            </h6>
-            <img src={loisirs} />
-          </div>
-          <div className="theme">
-            <h6>
               <b>MUSIQUE</b>
             </h6>
             <img src={musique} />
@@ -144,12 +163,6 @@ function Themes(props) {
         </div>
 
         <div className="theme-row">
-          <div className="theme">
-            <h6>
-              <b> POUR ADULTES </b>
-            </h6>
-            <img src={adulte} />
-          </div>
           <div className="theme">
             <h6>
               <b>SCIENCES</b>
@@ -188,11 +201,6 @@ function Themes(props) {
               <b>WEB</b>
             </h6>
             <img src={web} />
-          </div>
-          <div className="theme">
-            <h6>
-              <b></b>
-            </h6>
           </div>
         </div>
       </div>

@@ -10,19 +10,28 @@ import { Link } from "react-router-dom";
 function Quiz() {
   const [level, setLevel] = useState("debutant");
   const [theme, setTheme] = useState("none")
+  const [currentSubTheme, setCurrentSubTheme] = useState('none') 
 
 
   const handleLevelClick = (e) => {
         document.getElementById(level).style.border = "3px solid #fff"
         setLevel(e.target.value)
+        console.log(level)
   };
 
   const handleThemeClick = (e) => {
         setTheme(e.target.id)
+        window.location.replace('/game')
   }
+
+  const handleSubThemeClick = (e) => {
+    setCurrentSubTheme(e.target.id)
+}
 
   useEffect(() => {
      document.getElementById(level).style.border = "3px solid green"
+     console.log(theme)
+     
   }, [level, theme])
 
 
@@ -53,7 +62,7 @@ function Quiz() {
         <br />
       </div>
       {theme === "none" ? <Themes clickHandler={handleThemeClick} /> : '' }
-      {theme !== "none" ? <SubThemes theme={theme} /> : ''}
+      {theme !== "none" ? <SubThemes  clickHandler={handleSubThemeClick} theme={theme} /> : ''}
       <br />
       <br />
     </div>

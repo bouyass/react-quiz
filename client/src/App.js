@@ -13,8 +13,8 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Switch>
-          <Route path="/" exact component={Home}/>
+        <Switch> 
+          <Route path="/" component={Home} />
           <CheckNavigation path="/login" exact component={Login}/>
           <CheckNavigation path="/signup" exact component={SignUp}/>
           <PrivateNavigation path="/game" exact component={Game}/>
