@@ -55,6 +55,7 @@ function Login(props) {
                         if(Object.keys(response.data).length  === 1 && errors['token']){
                             localStorage.setItem('login',true)
                             localStorage.setItem('token',errors['token'])
+                            localStorage.setItem('username', errors['username'])
                             props.history.push({pathname: '/', state: {notification: "You've been loged in successfully"}})
                             window.location.replace = "http://localhost:3000/"
                         }

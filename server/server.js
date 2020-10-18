@@ -142,6 +142,7 @@ app.post('/login', (req,res) => {
                 if(token.length > 0){
                     errors['token'] = token
                     console.log(token)
+                    errors['username'] = username
                     res.send(errors)
                 }else{
                     errors['jwt_error'] = 'Error in token generation'
@@ -151,6 +152,23 @@ app.post('/login', (req,res) => {
         }else{
             res.send(errors)
         }
+    })
+})
+
+//save score
+app.post('/save', (req,res)=> {
+    let score = req.body.score
+    let username = req.body.username
+
+    conn.query('SELECT iduser FROM user WHERE username = ?', username, (error, result) => {
+        if(error) throw error
+        console.log(result)
+        let idUser = result[0].iduser
+        conn.query('INSERT INTO score (idUser, score) VALUES (?, ?)', [idUser, score] , (error , result) => {
+            if(error) throw error
+            res.sendStatus(200)
+        })
+        
     })
 })
 
